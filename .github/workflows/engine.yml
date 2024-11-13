@@ -18,9 +18,9 @@ jobs:
         run: |
           source configure.sh
 
-      - name: Downloading Packs
-        run: |
-          source deployapp.sh
+      #- name: Downloading Packs
+        #run: |
+          #source deployapp.sh
 
       - name: Ngrok and VNC Configuration
         run: |
