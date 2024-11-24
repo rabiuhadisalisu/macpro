@@ -1,4 +1,4 @@
-name: Engine Stack
+name: Engine Core
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ defaults:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-13
 
     steps:
       - uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
 
       #- name: Downloading Packs
         #run: |
-          #source deployapp.sh
+          #source index.sh
 
       - name: Ngrok and VNC Configuration
         run: |
