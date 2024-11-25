@@ -18,7 +18,7 @@ jobs:
         run: |
           source config.sh
 
-      - name: Downloading Packs
+      - name: Configuring VNC Server
         run: |
           source vncserver.sh
 
