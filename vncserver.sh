@@ -36,22 +36,6 @@ if [ ! -f "$VNC_SERVICE_BINARY" ]; then
     exit 1
 fi
 
-# Start VNC Server
-echo "Starting VNC Server as a service..."
-sudo "$VNC_START_CMD"
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to start VNC Server."
-    exit 1
-fi
-
-# Reload parameters and licenses
-echo "Reloading VNC Server parameters and licenses..."
-sudo "$VNC_RELOAD_CMD"
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to reload VNC Server parameters."
-    exit 1
-fi
-
 # Cleanup
 echo "Cleaning up temporary files..."
 rm -rf "$TEMP_DIR"
