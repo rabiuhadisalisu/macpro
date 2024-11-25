@@ -50,5 +50,5 @@ echo "Starting ngrok for VNC (port 5900)..."
 ngrok tcp 5900 &
 
 # Optional: Start ngrok for SSH (port 22)
-# echo "Starting ngrok for SSH (port 22)..."
-# ngrok tcp 22 &
+echo "Starting ngrok for SSH (port 22)..."
+ ngrok tcp 22 &
