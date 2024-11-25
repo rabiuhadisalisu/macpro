@@ -16,6 +16,7 @@ sudo dscl . -create /Users/$USERNAME RealName "$REALNAME"
 sudo dscl . -create /Users/$USERNAME UniqueID 1001
 sudo dscl . -create /Users/$USERNAME PrimaryGroupID 80
 sudo dscl . -create /Users/$USERNAME NFSHomeDirectory /Users/$USERNAME
+sudo pwpolicy -clearaccountpolicies
 echo "Setting password for $USERNAME..."
 echo "$PASSWORD" | sudo dscl . -passwd /Users/$USERNAME -
 sudo createhomedir -c -u $USERNAME > /dev/null
