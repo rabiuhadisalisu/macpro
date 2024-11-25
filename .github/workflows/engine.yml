@@ -35,10 +35,6 @@ jobs:
           #sudo mkdir /Users/rhsalisu/Desktop/Firmware
           #sudo mv /Users/runner/Desktop/* /Users/rhsalisu/Desktop/Firmware
           
-      - name: Setting External Password
-        run: |
-          echo "Rabiu2004@" | sudo passwd root
-          echo "Rabiu2004@" | sudo passwd runner
 
       - name: Holder
         run: sleep 86400  # 24 hours in seconds
