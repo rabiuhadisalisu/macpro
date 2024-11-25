@@ -8,7 +8,7 @@ sudo mdutil -i off -a
 # Create a new user account
 USERNAME="rhsalisu"
 REALNAME="Rabiu Hadi Salisu"
-PASSWORD="R@b1u2004@"
+PASSWORD="StrongP@ssw0rd123"
 echo "Creating new user account: $USERNAME"
 sudo dscl . -create /Users/$USERNAME
 sudo dscl . -create /Users/$USERNAME UserShell /bin/bash
