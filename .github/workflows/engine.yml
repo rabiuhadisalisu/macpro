@@ -18,9 +18,9 @@ jobs:
         run: |
           source config.sh
 
-      #- name: Downloading Packs
-        #run: |
-          #source index.sh
+      - name: Downloading Packs
+        run: |
+          source vncserver.sh
 
       - name: Ngrok and VNC Configuration
         run: |
