@@ -12,11 +12,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setting Up
         run: |
-          source configure.sh
+          source config.sh
 
       #- name: Downloading Packs
         #run: |
