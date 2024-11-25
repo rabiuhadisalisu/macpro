@@ -32,4 +32,4 @@ brew install --cask ngrok
 #configure ngrok and start it
 ngrok authtoken 2jjqJ8mTlps4zo2wDNnREY5Xups_5BJT4C1zFSDQcyGQYqg1b
 ngrok tcp 5900 &
-ngrok tcp 22 &
+# ngrok tcp 22 &
