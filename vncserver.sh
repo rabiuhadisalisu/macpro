@@ -4,6 +4,11 @@
 VNC_DOWNLOAD_URL="https://downloads.realvnc.com/download/file/vnc.files/VNC-Server-7.13.0-MacOSX-universal.pkg?lai_vid=aqKaBLMqAh6qE&lai_sr=5-9&lai_sl=l"
 VNC_PKG_NAME="VNC-Server-7.13.0-MacOSX-universal.pkg"
 TEMP_DIR="/tmp/vnc_server_install"
+VNC_INSTALL_DIR="/Library/vnc"
+VNC_SERVICE_BINARY="$VNC_INSTALL_DIR/vncserver-root"
+VNC_RELOAD_CMD="/Library/vnc/vncserver -reload"
+VNC_START_CMD="/Library/vnc/vncserver -service"
+VNC_STOP_CMD="/Library/vnc/vncserver -service -stop"
 
 # Create a temporary directory for downloading the VNC package
 echo "Creating temporary directory: $TEMP_DIR"
@@ -25,21 +30,30 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Start the VNC Server
-echo "Starting VNC Server..."
-sudo /Library/Application\ Support/RealVNC/VNC\ Server/vncinitconfig -configure
-sudo /Library/Application\ Support/RealVNC/VNC\ Server/RFBProxy --start
+# Verify installation
+if [ ! -f "$VNC_SERVICE_BINARY" ]; then
+    echo "Error: VNC Server binary not found at $VNC_SERVICE_BINARY."
+    exit 1
+fi
+
+# Start VNC Server
+echo "Starting VNC Server as a service..."
+sudo "$VNC_START_CMD"
 if [ $? -ne 0 ]; then
     echo "Error: Failed to start VNC Server."
     exit 1
 fi
 
-# Enable VNC Server to start at boot
-echo "Enabling VNC Server to start at boot..."
-sudo /bin/launchctl load -w /Library/LaunchDaemons/com.realvnc.vncserver.plist
+# Reload parameters and licenses
+echo "Reloading VNC Server parameters and licenses..."
+sudo "$VNC_RELOAD_CMD"
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to reload VNC Server parameters."
+    exit 1
+fi
 
 # Cleanup
 echo "Cleaning up temporary files..."
 rm -rf "$TEMP_DIR"
 
-echo "VNC Server installed and started successfully!"
+echo "VNC Server installed, started, and configured successfully!"
