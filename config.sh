@@ -27,21 +27,7 @@ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resourc
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -clientopts -setvnclegacy -vnclegacy yes
 
 # Set VNC password (hashed)
-echo "Setting VNC password..."
-VNC_PASSWORD="$PASSWORD"
-echo -n "$VNC_PASSWORD" | perl -we '
-    BEGIN {
-        @k = unpack "C*", pack "H*", "1734516E8BA8C5E2FF1C39567390ADCA"
-    };
-    $_ = <>;
-    chomp;
-    s/^(.{8}).*/$1/;
-    @p = unpack "C*", $_;
-    foreach (@k) {
-        printf "%02X", $_ ^ (shift @p || 0)
-    };
-    print "\n"
-' | sudo tee /Library/Preferences/com.apple.VNCSettings.txt
+echo root | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8C5E2FF1C39567390ADCA"}; $_ = <>; chomp; s/^(.{8}).*/$1/; @p = unpack "C*", $_; foreach (@k) { printf "%02X", $_ ^ (shift @p || 0) }; print "\n"' | sudo tee /Library/Preferences/com.apple.VNCSettings.txt
 
 # Restart and activate VNC
 echo "Restarting and activating VNC server..."
